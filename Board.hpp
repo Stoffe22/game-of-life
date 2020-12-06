@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
 
+#define HEIGHT 10
+#define LENGTH 10
+
 enum CellState {
     DEAD = 0,
     ALIVE = 1,
 };
 
-// Use a struct for Cell instead!!!!!!!!!!!!
 struct Cell {
     enum CellState state{DEAD};
     int xPos;
@@ -16,14 +18,12 @@ struct Cell {
 
 class Board {
 private:
-    constexpr static uint32_t length{100};
-    constexpr static uint32_t width{100};
-
-    Cell cellArray[length][width];
+    Cell cellArray[HEIGHT][LENGTH];
+    int height = HEIGHT;
+    int length= LENGTH;
 
 public:
-    Board();
-    void initializeBoard(const char initType[]);
+    void initBoard(const char initType[]);
     void printBoard();
     void updateState();
     ~Board();
