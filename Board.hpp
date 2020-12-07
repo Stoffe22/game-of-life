@@ -11,8 +11,6 @@ enum CellState {
 
 struct Cell {
     enum CellState state{DEAD};
-    int xPos;
-    int yPos;
 };
 
 
@@ -20,11 +18,12 @@ class Board {
 private:
     Cell cellArray[HEIGHT][LENGTH];
     int height = HEIGHT;
-    int length= LENGTH;
+    int length = LENGTH;
+    int cellNrOfNeighs(int iIndex, int jIndex);
 
 public:
-    void initBoard(const char initType[]);
-    void printBoard();
-    void updateState();
+    void init(const char type[]);
+    void print();
+    void update();
     ~Board();
 };
