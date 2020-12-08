@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#define HEIGHT 10
-#define LENGTH 10
+#define HEIGHT 30
+#define LENGTH 30
 
 enum CellState {
     DEAD = 0,

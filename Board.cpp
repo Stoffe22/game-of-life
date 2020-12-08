@@ -28,11 +28,12 @@ void Board::print() {
             if (cellArray[i][j].state == ALIVE) {
                 std::cout << "*";
             } else {
-                std::cout << "-";
+                std::cout << " ";
             }
         }
         std::cout << "\n";
     }
+    std::cout << "break\n";
 }
 
 int Board::cellNrOfNeighs(int i, int j) {
@@ -59,16 +60,19 @@ int Board::cellNrOfNeighs(int i, int j) {
 
 void Board::update() {
     int nr;
- for(int i = 0; i < height - 1; i++) {
-    for(int j = 0; j < length -1; j++) {
-        nr = cellNrOfNeighs(i, j);
+    for(int i = 0; i < height - 1; i++) {
+        for(int j = 0; j < length -1; j++) {
+            nr = cellNrOfNeighs(i, j);
 
-        if (cellArray[i][j].state == DEAD && (nr == 3)) {
-            cellArray[i][j].state == ALIVE;
-        } else if (cellArray[i][j].state == ALIVE && (nr == 2 || nr == 3)) {
-            continue;
-        } else {
-            cellArray[i][j].state == DEAD;
+
+            // Doesn't work!! Can't uppdate to next state before every current state has been checked
+            if (cellArray[i][j].state == DEAD && (nr == 3)) {
+                cellArray[i][j].state == ALIVE;
+            } else if (cellArray[i][j].state == ALIVE && (nr == 2 || nr == 3)) {
+                continue;
+            } else {
+                cellArray[i][j].state == DEAD;
+            }
         }
     }
 }

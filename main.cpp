@@ -7,8 +7,11 @@ int main() {
 
     const char str[] = "random";
     board->init("random");
+
+    while(true) {    
     board->print();
     board->update();
+    }
 
     return 0;
 }
