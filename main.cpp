@@ -6,8 +6,9 @@ int main() {
     Board* board = new Board();
 
     const char str[] = "random";
-    board->initBoard("random");
-    board->printBoard();
+    board->init("random");
+    board->print();
+    board->update();
 
     return 0;
 }

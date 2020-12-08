@@ -40,24 +40,35 @@ int Board::cellNrOfNeighs(int i, int j) {
     if (i == 0 && j == 0) {
         nr = cellArray[i+1][j].state + cellArray[i][j+1].state + cellArray[i+1][j+1].state;
     } else if (i == 0 && j == (length - 1)) {
-        
+        nr = cellArray[i-1][j].state + cellArray[i][j-1].state + cellArray[i+1][j-1].state;
     } else if (i == (height - 1) && j == 0) {
-
+        nr = cellArray[i-1][j].state + cellArray[i][j+1].state + cellArray[i-1][j+1].state;
     } else if (i == (height - 1) && j == (length - 1)) {
-
+        nr = cellArray[i-1][j].state + cellArray[i][j-1].state + cellArray[i-1][j-1].state;
     } else if (i == 0) {
-
-    } else if (i == (height -1) ) {
-
+        nr = cellArray[i][j-1].state + cellArray[i][j+1].state + cellArray[i+1][j-1].state + cellArray[i+1][j].state + cellArray[i+1][j+1].state;
+    } else if (i == (height -  1) ) {
+        nr = cellArray[i][j-1].state + cellArray[i][j+1].state + cellArray[i-1][j-1].state + cellArray[i-1][j].state + cellArray[i-1][j+1].state;
     } else if (j == 0) {
-
+        nr = cellArray[i-1][j].state + cellArray[i+1][j].state + cellArray[i-1][j+1].state + cellArray[i][j+1].state + cellArray[i+1][j+1].state;
     } else if (j == (length - 1)) {
-
+        nr = cellArray[i-1][j].state + cellArray[i+1][j].state + cellArray[i-1][j-1].state + cellArray[i][j-1].state + cellArray[i+1][j-1].state;
     }
     return nr;
 }
 
 void Board::update() {
+    int nr;
+ for(int i = 0; i < height - 1; i++) {
+    for(int j = 0; j < length -1; j++) {
+        nr = cellNrOfNeighs(i, j);
 
-
+        if (cellArray[i][j].state == DEAD && (nr == 3)) {
+            cellArray[i][j].state == ALIVE;
+        } else if (cellArray[i][j].state == ALIVE && (nr == 2 || nr == 3)) {
+            continue;
+        } else {
+            cellArray[i][j].state == DEAD;
+        }
+    }
 }
