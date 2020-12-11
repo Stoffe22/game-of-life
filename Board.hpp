@@ -1,25 +1,26 @@
 #include <iostream>
 #include <vector>
 
-#define HEIGHT 30
-#define LENGTH 30
+#define NR_ROWS 60
+#define NR_COLS 60
 
-enum CellState {
+enum State {
     DEAD = 0,
     ALIVE = 1,
 };
 
 struct Cell {
-    enum CellState state{DEAD};
+    enum State state;
+    enum State nextState;
 };
 
 
 class Board {
 private:
-    Cell cellArray[HEIGHT][LENGTH];
-    int height = HEIGHT;
-    int length = LENGTH;
-    int cellNrOfNeighs(int iIndex, int jIndex);
+    Cell cellArray[NR_ROWS][NR_COLS];
+    int nrRows = NR_ROWS;
+    int nrCols = NR_COLS;
+    int cellNrOfNeighs(int row, int col);
 
 public:
     void init(const char type[]);
